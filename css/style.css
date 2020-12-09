@@ -52,11 +52,14 @@ nav {
     flex-wrap: wrap;
     text-decoration: underline;
     text-transform: uppercase;
-
 }
 .nav-itemcurrent:hover{
     background-color: #7395AE;
     text-decoration: underline;
+}
+@keyframes header_animation{
+    from{color: #7395AE;}
+    to {color: white;}
 }
 header {
     background-color: gray;
@@ -64,12 +67,17 @@ header {
 header h1{
     font-weight: bold;
     text-decoration: none;
+    animation-name: header_animation;
+    animation-duration: 5s;
+}
+@media (prefers-reduced-motion) {
+  header h1{
+   animation: none;
+   -webkit-animation: none;
+  }
 }
 header p{
-    text-align: center;
-    padding-bottom: 25px;
-    padding-top: 10px;
-    font-size: 25px;
+    display: none;
 }
 p {
     font-size:  20px;
@@ -91,32 +99,26 @@ footer p {
 
 .text-block img{
     height: auto;
-    max-width: 25%;
+    max-width: 50%;
     object-fit: cover;
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding-top: 15px;
 }
-
 .third img{
     display: flex;
     flex-direction: row;
 }
-
 div {
     padding: 15px;
 }
-
 .grid-container1{
-    display:grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
+    display: block;
+
 }
 .grid-container2{
-    display:grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
+    display: block;
 }
 .grid-container2 p{
     padding: 15px;
@@ -128,6 +130,9 @@ div {
 .grid-item {
     border: 5px solid white;
     text-align: center;
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-left: 2px;
 }
 .grid-item h2{
     font-weight: bold;
@@ -153,6 +158,9 @@ div {
 .grid-item2, .grid-item3, .grid-item5, .grid-item6{
     border: 5px solid white;
 }
+.grid-item2, .grid-item6{
+    display: none;
+}
 .skip a{
   background: white;
   left: 0;
@@ -162,6 +170,7 @@ div {
   z-index: 1;
   position:absolute;
   top: -40px;
+  font-size: 25px;
 }
 .skip a:focus{
   top:0px;
@@ -170,9 +179,127 @@ div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-image: url("../images/parallax.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .interests img{
   border: 10px #5D5C61 solid;
   margin: 20px;
-  width: 400px;
+  width: 250px;
+  height: 250px;
+}
+
+@media (max-width:767px) {
+.flip-card{
+     display: none;
+}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+.grid-item{
+    padding: 0px;
+}
+.nav-links{
+    display: flex;
+    flex-direction: column;
+}
+header p{
+    display: none;
+}
+.grid-container2{
+    display: block;
+}
+.grid-item2, .grid-item6{
+    display: block;
+}
+.flip-card{
+    display: none;
+}
+}
+
+@media (min-width: 1025px)  {
+.grid-container1{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    justify-content: center;
+    
+}
+header {
+    background-color: gray;
+}
+header h1{
+    font-weight: bold;
+    text-decoration: none;
+}
+header p{
+    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    font-size: 25px;
+    display: block;
+}
+.grid-container2{
+    display:grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+.grid-item a{
+    font-size: 30px;
+    color: white;
+}
+.grid-item1, .grid-item4{
+    grid-column: 1 / span 2;
+    border: 5px solid white;
+    background-color: #5D5C61;
+}
+.grid-item2, .grid-item3, .grid-item5, .grid-item6{
+    border: 5px solid white;
+    display: grid;
+}
+/* This container is needed to position the front and back side */
+.flip-card{
+  margin: auto;
+  width: 25%;
+}
+.flip-card-inner {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: white;
+  color: black;
+  font-size: 25px;
+  padding: 70px;
+}
+/* Style the back side */
+.flip-card-back {
+  background-color: #5D5C61;
+  color: white;
+  transform: rotateY(180deg);
+}
+.flip-card-back a, .flip-card-back p {
+    font-size: 25px;
+    padding-top: 35px;
+    color: white;
+}
 }
